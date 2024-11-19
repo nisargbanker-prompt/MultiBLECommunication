@@ -174,6 +174,23 @@ class BluetoothLeService : Service() {
             selectedGattFlow.value = Pair(ACTION_DATA_AVAILABLE, gatt)
         }
 
+        override fun onCharacteristicChanged(
+            gatt: BluetoothGatt?,
+            characteristic: BluetoothGattCharacteristic?
+        ) {
+            super.onCharacteristicChanged(gatt, characteristic)
+
+            PromptUtils.mutableDataFromBLE.postValue(
+                Pair(
+                    gatt!!.device.address,
+                    convertHexToAscci(byteToString(characteristic!!.value))
+                )
+            )
+
+            selectedGattFlow.value = Pair(ACTION_DATA_AVAILABLE, gatt)
+
+        }
+
         override fun onCharacteristicRead(
             gatt: BluetoothGatt,
             characteristic: BluetoothGattCharacteristic,
