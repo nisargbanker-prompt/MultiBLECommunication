@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <Button
+            android:id="@+id/btnScan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan"
+            app:layout_constraintEnd_toStartOf="@+id/btnWrite1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnWrite1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="W1"
+            app:layout_constraintStart_toEndOf="@+id/btnScan"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnF40"
+            tools:itemCount="5"
+            tools:listitem="@layout/list_item" />
+
+        <Button
+            android:id="@+id/btnWrite2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="W2"
+            app:layout_constraintStart_toEndOf="@+id/btnWrite1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnWrite3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="W3"
+            app:layout_constraintStart_toEndOf="@+id/btnWrite2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnF20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="F20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnScan" />
+
+        <Button
+            android:id="@+id/btnF30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="F30"
+            app:layout_constraintStart_toEndOf="@+id/btnF20"
+            app:layout_constraintTop_toBottomOf="@+id/btnWrite1" />
+
+        <Button
+            android:id="@+id/btnF40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="F40"
+            app:layout_constraintStart_toEndOf="@+id/btnF30"
+            app:layout_constraintTop_toBottomOf="@+id/btnWrite2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
