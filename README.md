@@ -13,6 +13,6 @@ dependencyResolutionManagement {
 ```
 ```gradle
 dependencies {
-    implementation 'com.github.nisargbanker-prompt:MultiBLECommunication:1.0.0'
+    implementation 'com.github.nisargbanker-prompt:MultiBLECommunication:1.0.2'
 }
 ```
