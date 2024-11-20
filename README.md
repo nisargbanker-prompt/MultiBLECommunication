@@ -2,6 +2,7 @@
 Multiple BLE connections in a fast and simple way.
 
 ## Download
+Gradle Dependency:
 ```gradle
 dependencyResolutionManagement {
 		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -18,31 +19,42 @@ dependencies {
 ```
 
 ## Usage
+### Initialization:
 Initialize the library in your Application class.
+* In your application class, initialize the library:
 ```java
 PromptBLE.init(applicationContext)
 ```
 
-You can start the BLE service when you want to use a Bluetooth connection.
+### BLE Service:
+* Start the BLE service when you need to use a Bluetooth connection:
 ```java
 PromptUtils.startBLEService(this);
 ```
-Scan devices
+
+### Scanning for Devices:
+* Use the `scanBLEDevices` method to scan for nearby BLE devices:
 ```java
 PromptUtils.scanBLEDevices()
 ```
-Observe Devices.
+
+### Observing Devices:
+* Subscribe to the `asyncDevices` observable to observe discovered devices.
 ```java
 PromptUtils.asyncDevices.observeForever {
             //device = it
         }
 ```
-Connect and hold the BLE key that you provided in the function below for more functions.
+
+### Connecting and Managing BLE Keys:
+* Connect to a specific device by providing its key and a callback object.
 ```java
 PromptUtils.setOnClickOfBluetoothDevice(key = "BLE1", bleObject)
 ```
+* The `bleObject` will be used for further interaction with the connected device.
 
-Observe connection states using the below method.
+### Observing Connection State:
+* Use the `selectedGattFlow` flow to observe changes in the connection state:
 ```java
 lifecycleScope.launch {
             PromptUtils.selectedGattFlow.collectLatest {
@@ -59,19 +71,23 @@ lifecycleScope.launch {
         }
 ```
 
-Observe BLE data from the below method.
+### Observing BLE Data:
+* Subscribe to the `mutableDataFromBLE` observable to receive data from the connected device:
 ```java
 PromptUtils.mutableDataFromBLE.observeForever {
             DLog.e("BLE Data - - - ", it.second)
         }
 ```
 
-Write data on BLE using below method.
+### Writing Data to BLE:
+* Use the `writeData` method to send data to the connected device:
 ```java
 PromptUtils.writeData(key = "BLE1", "Write data string".toByteArray())
 ```
+* Replace `"Write data string"` with your desired data.
 
-Disconnect while destroy activity
+### Disconnecting:
+* Call `disconnectAll` when your activity is destroyed to disconnect from all connected devices.
 ```java
 PromptUtils.disconnectAll()
 ```
