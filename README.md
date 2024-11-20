@@ -1,5 +1,5 @@
 # MultiBLECommunication
-Multiple BLE connections in a fast and simple way.
+This library allows you to manage multiple Bluetooth Low Energy (BLE) connections in a fast and simple way.
 
 ## Download
 Gradle Dependency:
