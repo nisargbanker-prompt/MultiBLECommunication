@@ -31,6 +31,12 @@ Scan devices
 ```java
 PromptUtils.scanBLEDevices()
 ```
+Observe Devices.
+```java
+PromptUtils.asyncDevices.observeForever {
+            //device = it
+        }
+```
 Connect and hold the BLE key that you provided in the function below for more functions.
 ```java
 PromptUtils.setOnClickOfBluetoothDevice(key = "BLE1", bleObject)
