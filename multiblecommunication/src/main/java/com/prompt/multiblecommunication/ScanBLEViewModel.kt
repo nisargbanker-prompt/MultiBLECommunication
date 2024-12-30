@@ -273,11 +273,11 @@ internal object ScanBLEViewModel {
             selectedGattList.any { it.first == key }
 
         if (containsGatt) {
-            val gatt = selectedGattList.find {
+            val gatt = selectedGattList.findLast {
                 it.first == key
             }
 
-            val characteristic = BluetoothLeService.selectedBluetoothGattTXCharacteristicList.find {
+            val characteristic = BluetoothLeService.selectedBluetoothGattTXCharacteristicList.findLast {
                 it.first == key
             }
 

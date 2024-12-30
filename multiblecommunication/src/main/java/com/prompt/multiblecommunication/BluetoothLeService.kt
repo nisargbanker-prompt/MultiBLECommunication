@@ -16,13 +16,12 @@ import android.content.pm.PackageManager
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
-import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.prompt.multiblecommunication.PromptUtils.ACTION_DATA_AVAILABLE
 import com.prompt.multiblecommunication.PromptUtils.bleKey
 import com.prompt.multiblecommunication.PromptUtils.selectedBluettothDeviceList
-import com.prompt.multiblecommunication.PromptUtils.selectedGattList
 import com.prompt.multiblecommunication.PromptUtils.selectedGattFlow
+import com.prompt.multiblecommunication.PromptUtils.selectedGattList
 import com.prompt.multiblecommunication.Utils.byteToString
 import com.prompt.multiblecommunication.Utils.convertHexToAscci
 import java.util.UUID

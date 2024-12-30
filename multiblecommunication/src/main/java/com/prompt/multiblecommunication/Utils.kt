@@ -2,6 +2,8 @@ package com.prompt.multiblecommunication
 
 object Utils {
 
+    val fileName = "characteristics.txt"
+
     fun convertHexToAscci(hexValue: String): String {
         val output = StringBuilder()
         try {

@@ -211,6 +211,21 @@ object PromptUtils {
         connectPreSelectedDevice(key, preSelectedDevice)
     }
 
+    fun updateCharacteristics(
+        mac: String,
+        readCharacteristics: String,
+        writeCharacteristics: String
+    ) {
+        try {
+            PromptBLE.storageManager!!.updateFile(
+                Utils.fileName,
+                "$mac,$readCharacteristics,$writeCharacteristics"
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
     fun getServicesList() {
 
     }
@@ -232,6 +247,7 @@ object PromptUtils {
 //            mPreSelectedDeviceBleObject = MutableLiveData<BluetoothDevice>()
             PromptBLE.context?.stopService(gattServiceIntent)
             gattServiceIntent = null
+            mutableDisconnectedBLE.postValue(null)
         }
     }
 
