@@ -29,6 +29,8 @@ object PromptUtils {
         "android.bluetooth.device.action.mtuExchange"
     const val START_SCAN = "start_scan"
     const val STOP_SCAN = "stop_scan"
+    const val ACTION_BLE_CONFIGURED =
+        "ble_configure"
 
     const val TAG: String = "PromptUtils"
 

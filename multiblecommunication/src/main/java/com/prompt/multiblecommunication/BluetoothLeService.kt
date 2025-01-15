@@ -294,6 +294,9 @@ class BluetoothLeService : Service() {
         }
         gatt.writeCharacteristic(selectedBluetoothGattRXCharacteristicList.last().second)
 
+        PromptUtils.selectedGattFlow.value =
+            Pair(PromptUtils.ACTION_BLE_CONFIGURED, gatt)
+
     }
 
     fun writeDesciptor(gatt: BluetoothGatt) {
