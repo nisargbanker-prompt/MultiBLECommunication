@@ -179,14 +179,17 @@ class BluetoothLeService : Service() {
         ) {
             super.onCharacteristicChanged(gatt, characteristic)
 
-            PromptUtils.mutableDataFromBLE.postValue(
-                Pair(
-                    gatt!!.device.address,
-                    convertHexToAscci(byteToString(characteristic!!.value))
-                )
-            )
+            if (android.os.Build.VERSION.SDK_INT < 33) {
 
-            selectedGattFlow.value = Pair(ACTION_DATA_AVAILABLE, gatt)
+                PromptUtils.mutableDataFromBLE.postValue(
+                    Pair(
+                        gatt!!.device.address,
+                        convertHexToAscci(byteToString(characteristic!!.value))
+                    )
+                )
+
+                selectedGattFlow.value = Pair(ACTION_DATA_AVAILABLE, gatt)
+            }
 
         }
 
