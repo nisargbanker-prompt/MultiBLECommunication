@@ -3,6 +3,7 @@ package com.prompt.multiblecommunication
 import android.Manifest
 import android.app.Service
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothGatt
 import android.bluetooth.BluetoothGattCallback
 import android.bluetooth.BluetoothGattCharacteristic
@@ -15,7 +16,10 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Binder
 import android.os.Build
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import com.prompt.multiblecommunication.PromptUtils.ACTION_DATA_AVAILABLE
 import com.prompt.multiblecommunication.PromptUtils.bleKey
@@ -228,7 +232,7 @@ class BluetoothLeService : Service() {
                     bluetoothManager!!.getConnectionState(device, BluetoothProfile.GATT)
 
                 if (connectionState == BluetoothProfile.STATE_DISCONNECTED) {
-                    device.connectGatt(this, false, bluetoothGattCallback)
+                    device.connectGatt(this, false, bluetoothGattCallback, BluetoothDevice.TRANSPORT_LE)
                 } else if (connectionState == BluetoothProfile.STATE_CONNECTED) {
                     // already connected . send Broadcast if needed
                 }
@@ -333,7 +337,18 @@ class BluetoothLeService : Service() {
         ) {
             return
         }
-        gatt.close()
+        gatt.let { _gatt ->
+            try {
+                _gatt.disconnect()
+
+                // Wait a moment before closing on some devices
+                Handler(Looper.getMainLooper()).postDelayed({
+                    _gatt.close()
+                }, 500)
+            } catch (e: Exception) {
+                Log.e("BLE", "Error during GATT disconnect: ${e.message}")
+            }
+        }
     }
 
     fun write(gatt: BluetoothGatt) {
